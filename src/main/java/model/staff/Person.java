@@ -21,14 +21,12 @@ public class Person extends Staff implements Comparable<Person>{
     /**Должность*/
     private String position;
 
+    private List<Department> departments;
+
     public static List<Person> allInstance;
     static {
         allInstance = new ArrayList<>();
     }
-    public Person(){
-        allInstance.add(this);
-    }
-
     @Override
     protected void finalize() throws Throwable {
         allInstance.remove(this);
@@ -65,14 +63,12 @@ public class Person extends Staff implements Comparable<Person>{
         this.position = position;
     }
 
-    public static List<String> persons;
-    static {
-        persons = new ArrayList<>();
-        persons.add("Иванов Иван Иванович");
-        persons.add("Владимиров Владимир Владимирович");
-        persons.add("Константинов Константин Константинович");
-        persons.add("Алексеев Алексей Алексеевич");
-        persons.add("Александров Александр Александрович");
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 
     public String getShortname(){
@@ -88,5 +84,16 @@ public class Person extends Staff implements Comparable<Person>{
     @Override
     public int compareTo(Person o) {
         return this.getShortname().compareTo(o.getShortname());
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                ", departments=" + departments +
+                '}';
     }
 }

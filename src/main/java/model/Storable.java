@@ -9,10 +9,10 @@ import model.document.Document;
  */
 public interface Storable{
     /**Сохранение документа
-     * @param document сохраняемый документ
      * @return id документа
      */
-    Long save(Document document);
+    Long save();
+
     /**Получение имени хранилища
      * @return имя хранилища
      */

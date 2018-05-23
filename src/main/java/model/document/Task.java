@@ -45,4 +45,8 @@ public class Task extends Document {
     public void setInspector(Person inspector) {
         this.inspector = inspector;
     }
+    @Override
+    public String getStoreName() {
+        return "Поручение";
+    }
 }

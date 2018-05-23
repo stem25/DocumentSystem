@@ -21,6 +21,10 @@ public class Department extends Staff {
     /**Контактные телефоны*/
     private String contacts;
 
+    private Organization organization;
+
+    private List<Person> persons;
+
     public static List<Department> allInstance;
     static {
         allInstance = new ArrayList<>();
@@ -63,5 +67,33 @@ public class Department extends Staff {
 
     public void setContacts(String contacts) {
         this.contacts = contacts;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "shortName='" + shortName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", head=" + head +
+                ", contacts='" + contacts + '\'' +
+                ", organization=" + organization +
+                ", persons=" + persons +
+                '}';
     }
 }

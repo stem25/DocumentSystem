@@ -1,6 +1,9 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import exception.DocumentExistsException;
 import factory.DocumentFactory;
+import factory.Factory;
+import factory.TaskFactory;
 import model.*;
 import model.document.Document;
 import model.document.IncomingDocument;
@@ -18,9 +21,11 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<Document> documents = new ArrayList<>();
@@ -29,24 +34,28 @@ public class Main {
             JAXBContext context = JAXBContext.newInstance(Organization.class, Department.class, Person.class, Wrapper.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             List<Organization> organizationList = unmarshal("organizations.xml", unmarshaller);
-            List<Person> personList = unmarshal("persons.xml", unmarshaller);
+            Person.allInstance = unmarshal("persons.xml", unmarshaller);
             List<Department> departmentList = unmarshal("departments.xml", unmarshaller);
         }catch (Exception e){
             e.printStackTrace();
         }
         DocumentFactory documentFactory = new DocumentFactory();
         Collections.sort(Person.allInstance);
+        //Генерация документов разного типа
         for(int i=0; i< 5; i++){
-            documents.add(documentFactory.createDocument(Task.class));
-            documents.add(documentFactory.createDocument(IncomingDocument.class));
-            documents.add(documentFactory.createDocument(OutgoingDocument.class));
+            try {
+                documents.add(documentFactory.create(Task.class));
+                documents.add(documentFactory.create(IncomingDocument.class));
+                documents.add(documentFactory.create(OutgoingDocument.class));
+            } catch (DocumentExistsException e) {
+                e.printStackTrace();
+            }
         }
-        //Сортировка списка документов
         //Путь к исполняемому jar
         String pathName = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         pathName = pathName.substring(1,pathName.lastIndexOf("/") );
         for(Person person: Person.allInstance){
-//            System.out.println(person.getShortname());
+            System.out.println(person.getShortname());
             //путь + имя файла
             String filename = pathName + "/" + person.getShortname().trim() + ".json";
             PrintWriter printWriter = null;
@@ -57,19 +66,22 @@ public class Main {
             }
             List<Document> personDocuments = new ArrayList<>();
             for(Document document: Document.allInstance){
-
-                if(document.getAuthor().getId().equals(person.getId())){
-                    personDocuments.add(document);
-//                  System.out.format("\t -%s №%d от %tD. %s \n", document.getClass().getSimpleName(), document.getRegistrationNumber(), document.getRegistrationDate(), document.getName());
+                if(document.getAuthor() != null) {
+                    if (document.getAuthor().getId().equals(person.getId())) {
+                        personDocuments.add(document);
+                    }
                 }
             }
+            //Сортировка списка документов
             Collections.sort(personDocuments);
+            personDocuments.forEach(
+                    document-> System.out.format("\t -%s №%d от %tD. %s \n", document.getStoreName(), document.getRegistrationNumber(), document.getRegistrationDate(), document.getName())
+            );
             if(printWriter != null) {
                 printWriter.append(gson.toJson(personDocuments));
                 printWriter.close();
             }
         }
-
 
     }
 

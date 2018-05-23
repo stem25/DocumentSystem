@@ -31,4 +31,9 @@ public class OutgoingDocument extends Document {
     public void setDeliveryType(String deliveryType) {
         this.deliveryType = deliveryType;
     }
+
+    @Override
+    public String getStoreName() {
+        return "Исходящий документ";
+    }
 }

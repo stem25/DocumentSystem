@@ -1,18 +1,16 @@
 package model.document;
 
+import model.Storable;
 import model.staff.Person;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Абстрактный класс для документов
  * @author nsychev
  * @since 21.05.2018
  */
-public abstract class Document implements Comparable<Document>{
+public abstract class Document implements Comparable<Document>, Storable {
 
     /** Идентификатор*/
     private Long id;
@@ -120,5 +118,12 @@ public abstract class Document implements Comparable<Document>{
                 ", text='" + text + '\'' +
                 ", registrationDate=" + registrationDate +
                 '}';
+    }
+
+    @Override
+    public Long save() {
+        Long id = (long)(Math.random() * 300);
+        this.setId(id);
+        return id;
     }
 }

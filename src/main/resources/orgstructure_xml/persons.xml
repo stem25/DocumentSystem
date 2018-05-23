@@ -4,6 +4,9 @@
         <id>1</id>
         <firstName>Иванов Иван Иванович</firstName>
         <contacts>212312321</contacts>
+        <departments>
+            <id>1</id>
+        </departments>
     </person>
 
     <person>

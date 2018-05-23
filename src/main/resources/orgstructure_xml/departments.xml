@@ -4,6 +4,18 @@
         <id>1</id>
         <fullName>FullNa2me</fullName>
         <contacts>212312321</contacts>
+        <organization>
+            <id>1</id>
+            <shortName>Org1</shortName>
+        </organization>
+        <persons>
+                <id>1</id>
+                <firstName>asd</firstName>
+        </persons>
+        <persons>
+            <id>1</id>
+            <firstName>asasdaa</firstName>
+        </persons>
     </department>
 
     <department>

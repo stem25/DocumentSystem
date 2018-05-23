@@ -53,4 +53,8 @@ public class IncomingDocument extends Document {
     public void setOutgoingRegistrationDate(Date outgoingRegistrationDate) {
         this.outgoingRegistrationDate = outgoingRegistrationDate;
     }
+    @Override
+    public String getStoreName() {
+        return "Входящий документ";
+    }
 }
