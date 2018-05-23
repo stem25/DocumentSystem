@@ -1,4 +1,6 @@
-package model;
+package model.document;
+
+import model.staff.Person;
 
 import java.util.Date;
 /**
@@ -9,10 +11,10 @@ import java.util.Date;
 public class IncomingDocument extends Document {
 
     /** Отправитель (Person)*/
-    private String sender;
+    private Person sender;
 
     /** Адресат (Person)*/
-    private String addressee;
+    private Person addressee;
 
     /** Исходящий номер*/
     private Long outgoingNumber;
@@ -20,19 +22,19 @@ public class IncomingDocument extends Document {
     /** Исходящая дата регистрации*/
     private Date outgoingRegistrationDate;
 
-    public String getSender() {
+    public Person getSender() {
         return sender;
     }
 
-    public void setSender(String sender) {
+    public void setSender(Person sender) {
         this.sender = sender;
     }
 
-    public String getAddressee() {
+    public Person getAddressee() {
         return addressee;
     }
 
-    public void setAddressee(String addressee) {
+    public void setAddressee(Person addressee) {
         this.addressee = addressee;
     }
 

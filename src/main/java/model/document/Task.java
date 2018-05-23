@@ -1,4 +1,6 @@
-package model;
+package model.document;
+
+import model.staff.Person;
 
 import java.util.Date;
 /**
@@ -12,13 +14,13 @@ public class Task extends Document {
     private Date issueDate;
 
     /** Исполнитель (Person)*/
-    private String executor;
+    private Person executor;
 
     /** Признак контрольности*/
     //todo уточнить
 
     /** контроллер порчения(Person)*/
-    private String inspector;
+    private Person inspector;
 
     public Date getIssueDate() {
         return issueDate;
@@ -28,19 +30,19 @@ public class Task extends Document {
         this.issueDate = issueDate;
     }
 
-    public String getExecutor() {
+    public Person getExecutor() {
         return executor;
     }
 
-    public void setExecutor(String executor) {
+    public void setExecutor(Person executor) {
         this.executor = executor;
     }
 
-    public String getInspector() {
+    public Person getInspector() {
         return inspector;
     }
 
-    public void setInspector(String inspector) {
+    public void setInspector(Person inspector) {
         this.inspector = inspector;
     }
 }

@@ -1,4 +1,6 @@
-package model;
+package model.document;
+
+import model.staff.Person;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,9 +25,8 @@ public abstract class Document implements Comparable<Document>{
     /** Дата регистрации*/
     private Date registrationDate;
     /** Автор документа(Person)*/
-    private String author;
+    private Person author;
 
-    /** Автор документа(Person)*/
     public static List<Document> allInstance;
     static {
         allInstance = new ArrayList<>();
@@ -79,21 +80,21 @@ public abstract class Document implements Comparable<Document>{
         this.registrationDate = registrationDate;
     }
 
-    public String getAuthor() {
+    public Person getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Person author) {
         this.author = author;
     }
 
     @Override
     public int compareTo(Document o) {
-        int dateCompare = (int)(o.registrationDate.getTime() - this.registrationDate.getTime());
-        if(dateCompare == 0){
-            return (int)(o.registrationNumber - this.registrationNumber);
-        }else {
+        int dateCompare = this.registrationDate.compareTo(o.registrationDate);
+        if(dateCompare != 0) {
             return dateCompare;
+        }else{
+            return this.registrationNumber.compareTo(o.registrationNumber);
         }
     }
 

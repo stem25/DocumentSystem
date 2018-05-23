@@ -1,6 +1,11 @@
-package model;
+package factory;
 
 import exception.DocumentExistsException;
+import model.document.Document;
+import model.document.IncomingDocument;
+import model.document.OutgoingDocument;
+import model.document.Task;
+import model.staff.Person;
 
 import java.util.Date;
 import java.util.Random;
@@ -17,34 +22,36 @@ public class DocumentFactory {
      */
     public Document createDocument(Class clazz){
         Document document;
+        Integer personCount = Person.allInstance.size();
+        Random random = new Random();
         if(clazz.isAssignableFrom(Task.class)){
             Task task = new Task();
             task.setIssueDate(new Date(new Random().nextLong()));
-            task.setExecutor(Person.getRandomPerson());
-            task.setInspector(Person.getRandomPerson());
+            task.setExecutor(Person.allInstance.get(random.nextInt(personCount)));
+            task.setInspector(Person.allInstance.get(random.nextInt(personCount)));
             document = task;
         } else if(clazz.isAssignableFrom(IncomingDocument.class)){
             IncomingDocument incomingDocument = new IncomingDocument();
-            incomingDocument.setSender(Person.getRandomPerson());
-            incomingDocument.setAddressee(Person.getRandomPerson());
+            incomingDocument.setSender(Person.allInstance.get(random.nextInt(personCount)));
+            incomingDocument.setAddressee(Person.allInstance.get(random.nextInt(personCount)));
             incomingDocument.setOutgoingNumber(new Random().nextLong());
             incomingDocument.setOutgoingRegistrationDate(new Date(new Random().nextLong()));
             document = incomingDocument;
         } else if(clazz.isAssignableFrom(OutgoingDocument.class)){
             OutgoingDocument outgoingDocument = new OutgoingDocument();
-            outgoingDocument.setAddressee(Person.getRandomPerson());
+            outgoingDocument.setAddressee(Person.allInstance.get(random.nextInt(personCount)));
             outgoingDocument.setDeliveryType("Способ доставки");
             document = outgoingDocument;
         } else {
             throw new IllegalArgumentException();
         }
-        Long registrationId = (long) (Math.random() * 200);
+        Long registrationId = (long) (Math.random() * 300);
         if(!checkId(registrationId)){
             throw new DocumentExistsException();
         }
         document.setRegistrationNumber(registrationId);
-        document.setAuthor(Person.getRandomPerson());
-        document.setRegistrationDate(new Date());
+        document.setAuthor(Person.allInstance.get(random.nextInt(personCount)));
+        document.setRegistrationDate(new Date(12222223335L));
         document.setName("Название документа");
         document.setText("Текст документа");
         return document;

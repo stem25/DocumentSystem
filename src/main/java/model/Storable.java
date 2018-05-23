@@ -1,5 +1,7 @@
 package model;
 
+import model.document.Document;
+
 /**
  * Интерфейс сохранения документов
  * @author nsychev

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persons>
+    <person>
+        <id>1</id>
+        <firstName>Иванов Иван Иванович</firstName>
+        <contacts>212312321</contacts>
+    </person>
+
+    <person>
+        <id>2</id>
+        <firstName>Владимиров Владимир Владимирович</firstName>
+        <contacts>212312321</contacts>
+    </person>
+
+    <person>
+        <id>3</id>
+        <firstName>Иванов Иван Иванович</firstName>
+        <contacts>212312321</contacts>
+    </person>
+
+    <person>
+        <id>4</id>
+        <firstName>Константинов Константин Константинович</firstName>
+        <contacts>212312321</contacts>
+    </person>
+
+    <person>
+        <id>5</id>
+        <firstName>Алексеев Алексей Алексеевич</firstName>
+        <contacts>212312321</contacts>
+    </person>
+
+    <person>
+        <id>6</id>
+        <firstName>Александров Александр Александрович</firstName>
+        <contacts>212312321</contacts>
+    </person>
+</persons>

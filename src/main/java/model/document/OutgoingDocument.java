@@ -1,4 +1,6 @@
-package model;
+package model.document;
+
+import model.staff.Person;
 
 /**
  * Модельный класс для Исходящих документов
@@ -8,17 +10,17 @@ package model;
 public class OutgoingDocument extends Document {
 
     /** Адресат(Person)*/
-    private String addressee;
+    private Person addressee;
 
     /** Способ доставки*/
     private String deliveryType;
 
 
-    public String getAddressee() {
+    public Person getAddressee() {
         return addressee;
     }
 
-    public void setAddressee(String addressee) {
+    public void setAddressee(Person addressee) {
         this.addressee = addressee;
     }
 
