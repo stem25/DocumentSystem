@@ -5,7 +5,7 @@ import model.document.Document;
 
 public abstract class Factory {
     /**Абстрактная функция создания экземпляра документа
-     * @return Document
+     * @return созданую реализацию Document
      * @throws DocumentExistsException
      */
     public abstract Document create() throws DocumentExistsException;
@@ -14,12 +14,14 @@ public abstract class Factory {
      * @param id идентификатор для проверки
      * @return true если не повторяется, false если повторился
      */
-    protected boolean checkId(Long id){
-        for(Document document1: Document.allInstance){
-            if(document1.getRegistrationNumber() == id){
-                return false;
+    boolean checkId(Long id){
+        for(Document document: Document.allInstance){
+            if(document.getRegistrationNumber() != null) {
+                if (document.getRegistrationNumber().equals(id)) {
+                    return true;
+                }
             }
         }
-        return true;
+        return false;
     }
 }

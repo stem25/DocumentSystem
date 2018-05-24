@@ -4,6 +4,7 @@ import exception.DocumentExistsException;
 import model.document.Document;
 import model.document.IncomingDocument;
 import model.staff.Person;
+import service.XmlService.PersonXmlService;
 
 import java.util.Date;
 import java.util.Random;
@@ -11,19 +12,20 @@ import java.util.Random;
 public class IncomingDocumentFactory extends Factory {
     @Override
     public Document create() throws DocumentExistsException {
-        Integer personCount = Person.allInstance.size();
+        PersonXmlService personXmlService = new PersonXmlService();
+        Integer personCount = personXmlService.getList().size();
         Random random = new Random();
         IncomingDocument document = new IncomingDocument();
-        Long registrationId = (long) (Math.random() * 300);
-        if(!checkId(registrationId)){
+        Long registrationId = (long) (Math.random() * Long.MAX_VALUE);
+        if(checkId(registrationId)){
             throw new DocumentExistsException();
         }
         document.setRegistrationNumber(registrationId);
-        document.setSender(Person.allInstance.get(random.nextInt(personCount)));
-        document.setAddressee(Person.allInstance.get(random.nextInt(personCount)));
+        document.setSender(personXmlService.getList().get(random.nextInt(personCount)));
+        document.setAddressee(personXmlService.getList().get(random.nextInt(personCount)));
         document.setOutgoingNumber(new Random().nextLong());
         document.setOutgoingRegistrationDate(new Date(new Random().nextLong()));
-        document.setAuthor(Person.allInstance.get(random.nextInt(personCount)));
+        document.setAuthor(personXmlService.getList().get(random.nextInt(personCount)));
         document.setRegistrationDate(new Date(12222223335L));
         document.setName("Название документа");
         document.setText("Текст документа");
