@@ -1,5 +1,6 @@
 package controller;
 
+import dao.PersonDao;
 import exception.DocumentExistsException;
 import model.document.Document;
 import model.staff.Department;
@@ -40,7 +41,7 @@ public class EmployeesController {
 
     @GET
     @Path("{id}")
-    @Produces("application/json")
+    @Produces("application/json; charset=UTF-8" )
     public List<Document> documentsByAuthor(@PathParam("id") Long id){
         try {
             DocumentService documentService = new DocumentService();
@@ -49,5 +50,23 @@ public class EmployeesController {
             throw new BadRequestException(e);
         }
 
+    }
+
+    @GET
+    @Path("/persons")
+    @Produces("application/xml")
+    public List<Person> personList(){
+        PersonDao personDao = new PersonDao();
+        return personDao.list();
+    }
+
+    @GET
+    @Path("/persons/{id}")
+    @Produces("application/json")
+    public Person createList(@PathParam("id") Long id){
+        PersonDao personDao = new PersonDao();
+        Person person = new Person();
+        person.setFirstName("helloController");
+        return personDao.create(person);
     }
 }

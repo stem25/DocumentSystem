@@ -1,5 +1,7 @@
 package model.staff;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
@@ -78,8 +80,7 @@ public class Person extends Staff implements Comparable<Person>{
                 .append(this.firstName != null ? this.firstName : "")
                 .append(" ")
                 .append(this.middleName != null ? this.middleName : "");
-
-        return shortname.toString();
+        return shortname.toString().trim();
     }
     @Override
     public int compareTo(Person o) {
@@ -89,7 +90,8 @@ public class Person extends Staff implements Comparable<Person>{
     @Override
     public String toString() {
         return "Person{" +
-                "firstName='" + firstName + '\'' +
+                "id='" + getId() + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", position='" + position + '\'' +
