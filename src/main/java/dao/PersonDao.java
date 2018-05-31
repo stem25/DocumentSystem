@@ -1,7 +1,6 @@
 package dao;
 
 import model.staff.Person;
-import service.XmlService.PersonXmlService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -105,10 +104,6 @@ public class PersonDao extends AbstractEntityDao<Person> {
     }
 
     public void loadFromXmlToDB(){
-        PersonXmlService xmlService = new PersonXmlService();
-        List<Person> personList = xmlService.getList();
-        for (Person person: personList){
-            create(person);
-        }
+
     }
 }

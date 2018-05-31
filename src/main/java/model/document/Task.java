@@ -19,7 +19,7 @@ public class Task extends Document {
     /** Признак контрольности*/
     //todo уточнить
 
-    /** контроллер порчения(Person)*/
+    /** контролер порчения(Person)*/
     private Person inspector;
 
     public Date getIssueDate() {

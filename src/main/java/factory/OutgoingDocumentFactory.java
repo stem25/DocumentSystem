@@ -3,7 +3,6 @@ package factory;
 import exception.DocumentExistsException;
 import model.document.Document;
 import model.document.OutgoingDocument;
-import model.staff.Person;
 import service.XmlService.PersonXmlService;
 
 import java.util.Date;
@@ -16,7 +15,7 @@ public class OutgoingDocumentFactory extends Factory {
         Integer personCount = personXmlService.getList().size();
         Random random = new Random();
         OutgoingDocument document = new OutgoingDocument();
-        Long registrationId = (long) (Math.random() * Long.MAX_VALUE);
+        Long registrationId = (long) (Math.random() * 20000L);
         if(checkId(registrationId)){
             throw new DocumentExistsException();
         }

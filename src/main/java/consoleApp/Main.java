@@ -1,25 +1,13 @@
 package consoleApp;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import exception.DocumentExistsException;
-
-import model.document.Document;
-import model.staff.Person;
+import model.document.Task;
 import service.DocumentService;
-import service.XmlService.PersonXmlService;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
         DocumentService documentService = new DocumentService();
         List<Document> documents = new ArrayList<>();
         try {
@@ -61,7 +49,14 @@ public class Main {
                 printWriter.append(gson.toJson(personDocuments));
                 printWriter.close();
             }
+        }*/
+        DocumentService documentService = new DocumentService();
+        try {
+            documentService.generateDocuments();
+        } catch (DocumentExistsException e) {
+            e.printStackTrace();
         }
-
+        Task task = (Task)documentService.getDocumentList().get(0);
+        System.out.println(task.getIssueDate());
     }
 }

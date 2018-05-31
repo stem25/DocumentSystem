@@ -1,7 +1,6 @@
 package controller;
 
 import dao.PersonDao;
-import exception.DocumentExistsException;
 import model.document.Document;
 import model.staff.Department;
 import model.staff.Organization;
@@ -11,7 +10,10 @@ import service.XmlService.DepartmentXmlService;
 import service.XmlService.OrganizationXmlService;
 import service.XmlService.PersonXmlService;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import java.util.List;
 
 @Path("/employees")
@@ -43,18 +45,13 @@ public class EmployeesController {
     @Path("{id}")
     @Produces("application/json; charset=UTF-8" )
     public List<Document> documentsByAuthor(@PathParam("id") Long id){
-        try {
-            DocumentService documentService = new DocumentService();
-            return documentService.documentsByAuthor(id);
-        }catch (DocumentExistsException e){
-            throw new BadRequestException(e);
-        }
-
+        DocumentService documentService = new DocumentService();
+        return documentService.documentsByAuthor(id);
     }
 
     @GET
     @Path("/persons")
-    @Produces("application/xml")
+    @Produces("application/json; charset=UTF-8")
     public List<Person> personList(){
         PersonDao personDao = new PersonDao();
         return personDao.list();

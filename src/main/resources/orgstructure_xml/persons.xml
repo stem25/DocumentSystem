@@ -2,7 +2,9 @@
 <persons>
     <person>
         <id>1</id>
-        <firstName>Иванов Иван Иванович</firstName>
+        <firstName>Иван </firstName>
+        <middleName>Иванович</middleName>
+        <lastName>Иванов </lastName>
         <contacts>212312321</contacts>
         <departments>
             <id>1</id>
@@ -11,31 +13,41 @@
 
     <person>
         <id>2</id>
-        <firstName>Владимиров Владимир Владимирович</firstName>
+        <firstName>Владимир</firstName>
+        <middleName>Владимирович</middleName>
+        <lastName>Владимиров</lastName>
         <contacts>212312321</contacts>
     </person>
 
     <person>
         <id>3</id>
-        <firstName>Иванов Иван Иванович</firstName>
+        <firstName>Иван</firstName>
+        <middleName>Иванович</middleName>
+        <lastName>Иванов</lastName>
         <contacts>212312321</contacts>
     </person>
 
     <person>
         <id>4</id>
-        <firstName>Константинов Константин Константинович</firstName>
+        <firstName>Константин</firstName>
+        <middleName>Константинович</middleName>
+        <lastName>Константинов </lastName>
         <contacts>212312321</contacts>
     </person>
 
     <person>
         <id>5</id>
-        <firstName>Алексеев Алексей Алексеевич</firstName>
+        <firstName>Алексей </firstName>
+        <middleName>Алексеевич</middleName>
+        <lastName>Алексеев </lastName>
         <contacts>212312321</contacts>
     </person>
 
     <person>
         <id>6</id>
-        <firstName>Александров Александр Александрович</firstName>
+        <firstName>Александр</firstName>
+        <middleName>Александрович</middleName>
+        <lastName>Александров</lastName>
         <contacts>212312321</contacts>
     </person>
 </persons>
