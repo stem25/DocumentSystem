@@ -1,0 +1,32 @@
+.person_card{
+    width: 99%;
+}
+.person_card div{
+    border: 1px #dfdfdf solid;
+    border-radius: 5px;
+    background-color: #F9FDFF;
+    padding: 20px;
+}
+.person_card h2{
+    padding: 10px;
+    border: 1px #dfdfdf solid;
+    border-radius: 5px;
+    background-color: #DEE8F0;
+    margin-top:0;
+}
+.person_card input[type=text], textarea{
+    width: auto;
+    padding: 6px 5px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    min-width: 118em;!important
+}
+
+.person_card img{
+    width: 15em;
+    height: 15em;
+    float: right;
+}

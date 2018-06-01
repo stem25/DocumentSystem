@@ -25,6 +25,8 @@ public class Person extends Staff implements Comparable<Person>{
 
     private List<Department> departments;
 
+    private String avatar;
+
     public static List<Person> allInstance;
     static {
         allInstance = new ArrayList<>();
@@ -97,5 +99,13 @@ public class Person extends Staff implements Comparable<Person>{
                 ", position='" + position + '\'' +
                 ", departments=" + departments +
                 '}';
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

@@ -10,10 +10,18 @@ import model.document.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Сервис работы с документами
+ * @author nsychev
+ */
 public class DocumentService {
 
+    /** Статическое хранилище документов*/
     private static List<Document> documents = null;
 
+    /** Получение документа по id
+     * @param id идентификатор документа
+     * @return {@link Document}
+     */
     public Document read(Long id){
         List<Document> documents = new ArrayList<>();
         for (Document document: DocumentService.documents){
@@ -23,6 +31,10 @@ public class DocumentService {
         }
         return null;
     }
+
+    /** Генерирует список документов через {@link DocumentFactory}
+     * @throws DocumentExistsException если документ с таким {@link Document#registrationNumber} уже существует
+     */
     public void generateDocuments() throws DocumentExistsException{
         documents = new ArrayList<>();
         DocumentFactory documentFactory = new DocumentFactory();
@@ -34,10 +46,17 @@ public class DocumentService {
         }
     }
 
+    /** Возвращает список документов
+     * @return {@link List<Document>}
+     */
     public List<Document> getDocumentList() {
         return documents;
     }
 
+    /** Получение документа по id автора
+     * @param id идентификатор автора документа
+     * @return {@link List<Document>}
+     */
     public List<Document> documentsByAuthor(Long id){
         List<Document> documents = new ArrayList<>();
         for (Document document: DocumentService.documents){

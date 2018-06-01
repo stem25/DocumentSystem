@@ -1,20 +1,43 @@
 package consoleApp;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import exception.DocumentExistsException;
+import model.document.Document;
 import model.document.Task;
+import model.staff.Person;
 import service.DocumentService;
+import service.XmlService.PersonXmlService;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+/**
+ * Консольное приложение
+ */
 public class Main {
 
+    /**
+     * main функция консольного приложения
+     * Произовдит создание {@link Document} через {@link DocumentService}
+     * Считывает {@link Person} из xml
+     * Сортирует и выводит в консоль список персон и документы в которых персона является автором
+     * Вывод отчетности по каждой персоне в отдельный json файл("ФИО".json).
+     * @param args аргументы при запуске
+     */
     public static void main(String[] args){
-        /*Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         DocumentService documentService = new DocumentService();
-        List<Document> documents = new ArrayList<>();
+        List<Document> documents = null;
         try {
-            documents = documentService.getDocumentList();
-        }catch (DocumentExistsException e){
+            documentService.generateDocuments();
+        } catch (DocumentExistsException e) {
             e.printStackTrace();
         }
+        documents = documentService.getDocumentList();
 
         PersonXmlService xmlService = new PersonXmlService();
         List<Person> people = xmlService.getList();
@@ -29,7 +52,7 @@ public class Main {
             PrintWriter printWriter = null;
             try {
                 printWriter = new PrintWriter(filename, "UTF-8");
-            } catch (FileNotFoundException|UnsupportedEncodingException e){
+            } catch (FileNotFoundException |UnsupportedEncodingException e){
                 e.printStackTrace();
             }
             List<Document> personDocuments = new ArrayList<>();
@@ -43,20 +66,12 @@ public class Main {
             //Сортировка списка документов
             Collections.sort(personDocuments);
             personDocuments.forEach(
-                    document-> System.out.format("\t -%s №%d от %tD. %s \n", document.getStoreName(), document.getRegistrationNumber(), document.getRegistrationDate(), document.getName())
+                    document-> System.out.format("\t -%s №%d от %tD. %s %s\n", document.getStoreName(), document.getRegistrationNumber(), document.getRegistrationDate(), document.getName(), document.getAuthor().getShortname())
             );
             if(printWriter != null) {
                 printWriter.append(gson.toJson(personDocuments));
                 printWriter.close();
             }
-        }*/
-        DocumentService documentService = new DocumentService();
-        try {
-            documentService.generateDocuments();
-        } catch (DocumentExistsException e) {
-            e.printStackTrace();
         }
-        Task task = (Task)documentService.getDocumentList().get(0);
-        System.out.println(task.getIssueDate());
     }
 }

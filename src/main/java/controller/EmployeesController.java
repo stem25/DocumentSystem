@@ -6,6 +6,7 @@ import model.staff.Department;
 import model.staff.Organization;
 import model.staff.Person;
 import service.DocumentService;
+import service.PersonService;
 import service.XmlService.DepartmentXmlService;
 import service.XmlService.OrganizationXmlService;
 import service.XmlService.PersonXmlService;
@@ -53,17 +54,17 @@ public class EmployeesController {
     @Path("/persons")
     @Produces("application/json; charset=UTF-8")
     public List<Person> personList(){
-        PersonDao personDao = new PersonDao();
-        return personDao.list();
+        PersonService service = new PersonService();
+        return service.list(null);
     }
 
     @GET
     @Path("/persons/{id}")
     @Produces("application/json")
     public Person createList(@PathParam("id") Long id){
-        PersonDao personDao = new PersonDao();
+        PersonService service = new PersonService();
         Person person = new Person();
         person.setFirstName("helloController");
-        return personDao.create(person);
+        return service.create(person);
     }
 }

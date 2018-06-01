@@ -16,7 +16,7 @@ public class PersonXmlService {
     public List<Person> getList(){
         List<Person> objects = null;
         try {
-            JAXBContext context = JAXBContext.newInstance(Organization.class, Department.class, Person.class, Wrapper.class);
+            JAXBContext context = JAXBContext.newInstance(Person.class, Wrapper.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             StreamSource streamSource = new StreamSource(PersonXmlService.class.getResourceAsStream("/orgstructure_xml/persons.xml"));
             Wrapper<Person> wrapper = (Wrapper<Person>) unmarshaller.unmarshal(streamSource, Wrapper.class).getValue();

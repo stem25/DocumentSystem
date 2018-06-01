@@ -2,18 +2,27 @@ package dao;
 
 import exception.ConnectionException;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * Абстрактный класс дао
+ * @author nsychev
+ */
 public abstract class AbstractEntityDao<E> {
 
+    /** Connection с бд*/
     private Connection connection;
 
+    /** URL соединения*/
     private String connectionUrl = "jdbc:derby:ecmDb;create=true";
 
+    /**
+     * Конструктор. Создание и настройка соединения
+     * Создание таблицы в случае если не существует
+     * @author nsychev
+     */
     public AbstractEntityDao(){
         try {
             Properties properties = new Properties();
@@ -36,10 +45,18 @@ public abstract class AbstractEntityDao<E> {
         }
     }
 
+    /**
+     * Функция получения соединения
+     * @return {@link Connection}
+     */
     public Connection getConnection(){
         return connection;
     }
 
+    /**
+     * Функция создания {@link PreparedStatement}
+     * @return {@link PreparedStatement}
+     */
     public PreparedStatement getPreparedStatement(String sql){
         PreparedStatement preparedStatement = null;
         try {
@@ -50,6 +67,10 @@ public abstract class AbstractEntityDao<E> {
         return preparedStatement;
     }
 
+    /**
+     * Функция закрытия {@link PreparedStatement}
+     * @return {@link PreparedStatement}
+     */
     public void closePreparedStatement(PreparedStatement ps){
         if(ps != null) {
             try {
@@ -82,5 +103,10 @@ public abstract class AbstractEntityDao<E> {
         } catch (SQLException e) {
             throw new ConnectionException("Get metadata troubles");
         }
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        connection.close();
     }
 }

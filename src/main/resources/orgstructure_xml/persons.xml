@@ -9,6 +9,7 @@
         <departments>
             <id>1</id>
         </departments>
+        <avatar>avatar1.jpg</avatar>
     </person>
 
     <person>
@@ -17,6 +18,7 @@
         <middleName>Владимирович</middleName>
         <lastName>Владимиров</lastName>
         <contacts>212312321</contacts>
+        <avatar>avatar2.jpg</avatar>
     </person>
 
     <person>
@@ -25,6 +27,7 @@
         <middleName>Иванович</middleName>
         <lastName>Иванов</lastName>
         <contacts>212312321</contacts>
+        <avatar>avatar3.png</avatar>
     </person>
 
     <person>
@@ -33,6 +36,7 @@
         <middleName>Константинович</middleName>
         <lastName>Константинов </lastName>
         <contacts>212312321</contacts>
+        <avatar>avatar4.jpg</avatar>
     </person>
 
     <person>
@@ -41,6 +45,7 @@
         <middleName>Алексеевич</middleName>
         <lastName>Алексеев </lastName>
         <contacts>212312321</contacts>
+        <avatar>avatar5.jpg</avatar>
     </person>
 
     <person>
