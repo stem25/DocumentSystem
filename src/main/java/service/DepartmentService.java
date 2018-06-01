@@ -1,27 +1,29 @@
 package service;
 
+import dao.DepartmentDao;
 import dao.PersonDao;
+import model.staff.Department;
 import model.staff.Person;
 
 import java.util.List;
 import java.util.Map;
 
-public class PersonService implements Crud<Person> {
+public class DepartmentService implements Crud<Department> {
 
-    private PersonDao dao = new PersonDao();
-    
+    private DepartmentDao dao = new DepartmentDao();
+
     @Override
-    public Person create(Person entity) {
+    public Department create(Department entity) {
         return dao.create(entity);
     }
 
     @Override
-    public Person read(Long id) {
+    public Department read(Long id) {
         return dao.read(id);
     }
 
     @Override
-    public void update(Person entity) {
+    public void update(Department entity) {
         dao.update(entity);
     }
 
@@ -31,7 +33,7 @@ public class PersonService implements Crud<Person> {
     }
 
     @Override
-    public List<Person> list(Map<String, String> filter) {
+    public List<Department> list(Map<String, String> filter) {
         return dao.list();
     }
 }

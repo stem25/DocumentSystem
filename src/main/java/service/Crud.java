@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface Crud<T> {
 
-    Person create(T entity);
+    T create(T entity);
     T read(Long id);
     void update(T entity);
     void delete(Long id);
