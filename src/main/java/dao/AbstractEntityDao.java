@@ -32,7 +32,7 @@ public abstract class AbstractEntityDao<E> {
             throw new ConnectionException("Incorrect URL");
         }
 
-        if(!isTableExsit(getTableName().toUpperCase())){
+        if(!isTableExsit(getTableName())){
             System.out.println("Creating table " + getCreateSQL());
             try {
                 Statement st = connection.createStatement();
@@ -95,7 +95,7 @@ public abstract class AbstractEntityDao<E> {
         try {
             ResultSet resultSet = connection.getMetaData().getTables(null, null, null, names);
             while (resultSet.next()){
-                if(resultSet.getString("TABLE_NAME").equals(name)){
+                if(resultSet.getString("TABLE_NAME").equals(name.toUpperCase())){
                     return true;
                 }
             }

@@ -88,7 +88,8 @@ public class Department extends Staff {
     @Override
     public String toString() {
         return "Department{" +
-                "shortName='" + shortName + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", shortName='" + shortName + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", head=" + head +
                 ", contacts='" + contacts + '\'' +
